@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title> </title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="author" content="[2020.08] Designed by Kim;Coded by Pong">
+	<meta name="format-detection" content="telephone=no">
+	<!--#include file="/common/template/lp/lp_css.html"-->
+	<link rel="stylesheet" href="/public/css/Scrollbar.css" type="text/css">
+	<link href="/promote/lp259/css/animate.css" type="text/css" rel="stylesheet" />
+	<link href="/promote/lp259/css/lp259.css" type="text/css" rel="stylesheet" />
+
+	<script src="/public/js/jquery.min.js" type="text/javascript"></script>
+	<script src="/public/js/rem.js" charset="utf-8"></script>
+	<script src="/public/js/mCustomScrollbar.js" type="text/javascript"></script>
+	<script src="/promote/lp259/js/wow.min.js" type="text/javascript"></script>
+	<script src="/promote/lp259/js/lp259.js" charset="utf-8"></script>
+
+</head>
+
+<body>
+	<div class="main_content">
+
+		<div class="top_banner">
+
+			<div class="banner_title">
+				<p class="title1 wow fadeInDown"><img src="/promote/lp259/images/banner_title1.png"></p>
+				<p class="title2 wow fadeInUp"><img src="/promote/lp259/images/banner_title2.png"></p>
+			</div>
+			<span class="banner_pic wow flipInY"><img src="/promote/lp259/images/banner_pic.png"></span>
+
+		</div><!-- /top_banner-->
+
+		<div class="data_group">
+			<span class="content_pic"><img src="/promote/lp259/images/content_pic.png"></span>
+
+			<div class="data_menu">
+				<div onClick="$('#select_popup').fadeIn()">
+					<span>选产品类别</span>
+					<p id="show_data"><span>贵金属</span></p>
+				</div>
+			</div><!-- /data_menu-->
+
+			<div class="data_list">
+
+				<table>
+					<tr>
+						<th></th>
+						<th>产品名称</th>
+						<th>现价</th>
+						<th>单手盈利</th>
+						<th></th>
+					</tr>
+					<tr>
+						<td><img src="/promote/lp259/images/icon1.png" class="icon"></td>
+						<td>现货黄金现货黄</td>
+						<td>1956.55</td>
+						<td>$2000</td>
+						<td><a href="#" class="r_btn"><img src="/promote/lp259/images/red_btn.png"></a></td>
+					<tr>
+						<td><img src="/promote/lp259/images/icon2.png" class="icon"></td>
+						<td>现货白银</td>
+						<td>28.648</td>
+						<td>$1600</td>
+						<td><a href="#" class="r_btn"><img src="/promote/lp259/images/red_btn.png"></a></td>
+					<tr>
+						<td><img src="/promote/lp259/images/icon3.png" class="icon"></td>
+						<td>现货黄金</td>
+						<td>1956.55</td>
+						<td>$2000</td>
+						<td><a href="#" class="r_btn"><img src="/promote/lp259/images/red_btn.png"></a></td>
+					<tr>
+						<td><img src="/promote/lp259/images/icon4.png" class="icon"></td>
+						<td>现货白银</td>
+						<td>28.648</td>
+						<td>$1600</td>
+						<td><a href="#" class="r_btn"><img src="/promote/lp259/images/red_btn.png"></a></td>
+					<tr>
+						<td><img src="/promote/lp259/images/icon5.png" class="icon"></td>
+						<td>现货黄金</td>
+						<td>1956.55</td>
+						<td>$2000</td>
+						<td><a href="#" class="r_btn"><img src="/promote/lp259/images/red_btn.png"></a></td>
+					</tr>
+				</table>
+
+			</div><!-- /data_list-->
+
+			<span class="content_pic"><img src="/promote/lp259/images/content_pic.png"></span>
+		</div><!-- /data_group-->
+
+		<div class="bottom_btn">
+			<a href="#" class="btn1">去&nbsp;登&nbsp;录&nbsp;交&nbsp;易</a>
+			<a href="#" class="btn2">真&nbsp;实&nbsp;开&nbsp;户</a>
+		</div>
+
+	</div><!-- /main_content-->
+
+
+	<div class="popup_group" id="select_popup">
+
+		<div class="popup_content">
+			<ul id="popup_data">
+				<li>
+					<label for="data1">贵金属</label>
+					<input name="data1" id="data1" type="checkbox" value="贵金属" checked>
+				</li>
+				<li>
+					<label for="data2">能源</label>
+					<input name="data2" id="data2" type="checkbox" value="能源">
+				</li>
+				<li>
+					<label for="data3">外汇</label>
+					<input name="data3" id="data3" type="checkbox" value="外汇">
+				</li>
+				<li>
+					<label for="data4">指数</label>
+					<input name="data4" id="data4" type="checkbox" value="指数">
+				</li>
+				<li>
+					<label for="data5">农产品</label>
+					<input name="data5" id="data5" type="checkbox" value="农产品">
+				</li>
+				<li>
+					<label for="data6">美股</label>
+					<input name="data6" id="data6" type="checkbox" value="美股">
+				</li>
+				<li>
+					<label for="data7">港股</label>
+					<input name="data7" id="data7" type="checkbox" value="港股">
+				</li>
+			</ul>
+			<div class="popup_btn">
+				<a href="#" onClick="update_list()" class="btn1">确认</a>
+				<a href="#" onClick="popup_close()" class="btn2">取消</a>
+			</div>
+		</div><!-- /popup_content-->
+
+	</div><!-- /popup_group-->
+
+
+
+	<script>
+
+		wow = new WOW(
+			{
+				animateClass: 'animated',
+				offset: 100,
+			}
+		);
+		wow.init();
+
+
+		$(document).ready(function () {
+			remCompute(750, true);
+
+		});	
+	</script>
+
+
+
+</body>
+
+</html>

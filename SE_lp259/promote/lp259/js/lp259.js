@@ -217,7 +217,7 @@ var vm = new Vue({
 						//
 						// 注入產品 ID 陣列 
 						// e.g 573004 = 黃金價格
-						code_ids: [573005],
+						code_ids: [573116,573114,573004,573033],
 						//
 						subscribeType: "reSubscribe",
 						type: "yz"

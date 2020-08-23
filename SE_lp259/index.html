@@ -38,7 +38,8 @@
 			<div class="data_menu">
 				<div onClick="$('#select_popup').fadeIn()">
 					<span>选产品类别</span>
-					<p id="show_data"><span>贵金属</span></p>
+					<p v-if="checkedNames.length === 0"><span>請選擇產品</span></p>
+					<p><span>{{checkedNames.join(" ")}}</span></p>
 				</div>
 			</div><!-- /data_menu-->
 
@@ -71,48 +72,57 @@
 			<a href="#" class="btn2">真&nbsp;实&nbsp;开&nbsp;户</a>
 		</div>
 
+		<!-- /popup_group-->
+		<div class="popup_group" id="select_popup">
+
+			<div class="popup_content">
+				<ul id="popup_data">
+					<li>
+						<label for="data1">全選</label>
+						<input name="data1" id="data1" type="checkbox" value="贵金属 能源 外汇 指数 农产品 美股 港股" v-model="checkedNames">
+					</li>
+					<li>
+						<label for="data1">贵金属</label>
+						<input name="data1" id="data1" type="checkbox" value="贵金属" v-model="checkedNames">
+					</li>
+					<li>
+						<label for="data2">能源</label>
+						<input name="data2" id="data2" type="checkbox" value="能源" v-model="checkedNames">
+					</li>
+					<li>
+						<label for="data3">外汇</label>
+						<input name="data3" id="data3" type="checkbox" value="外汇" v-model="checkedNames">
+					</li>
+					<li>
+						<label for="data4">指数</label>
+						<input name="data4" id="data4" type="checkbox" value="指数" v-model="checkedNames">
+					</li>
+					<li>
+						<label for="data5">农产品</label>
+						<input name="data5" id="data5" type="checkbox" value="农产品" v-model="checkedNames">
+					</li>
+					<li>
+						<label for="data6">美股</label>
+						<input name="data6" id="data6" type="checkbox" value="美股" v-model="checkedNames">
+					</li>
+					<li>
+						<label for="data7">港股</label>
+						<input name="data7" id="data7" type="checkbox" value="港股" v-model="checkedNames">
+					</li>
+				</ul>
+				<div class="popup_btn">
+					<a href="#" onClick="update_list()" class="btn1">确认</a>
+					<a href="#" onClick="popup_close()" class="btn2">取消</a>
+				</div>
+			</div><!-- /popup_content-->
+
+		</div>
+
+
+
+
 	</div><!-- /main_content-->
 
-	<div class="popup_group" id="select_popup">
-
-		<div class="popup_content">
-			<ul id="popup_data">
-				<li>
-					<label for="data1">贵金属</label>
-					<input name="data1" id="data1" type="checkbox" value="贵金属" checked>
-				</li>
-				<li>
-					<label for="data2">能源</label>
-					<input name="data2" id="data2" type="checkbox" value="能源">
-				</li>
-				<li>
-					<label for="data3">外汇</label>
-					<input name="data3" id="data3" type="checkbox" value="外汇">
-				</li>
-				<li>
-					<label for="data4">指数</label>
-					<input name="data4" id="data4" type="checkbox" value="指数">
-				</li>
-				<li>
-					<label for="data5">农产品</label>
-					<input name="data5" id="data5" type="checkbox" value="农产品">
-				</li>
-				<li>
-					<label for="data6">美股</label>
-					<input name="data6" id="data6" type="checkbox" value="美股">
-				</li>
-				<li>
-					<label for="data7">港股</label>
-					<input name="data7" id="data7" type="checkbox" value="港股">
-				</li>
-			</ul>
-			<div class="popup_btn">
-				<a href="#" onClick="update_list()" class="btn1">确认</a>
-				<a href="#" onClick="popup_close()" class="btn2">取消</a>
-			</div>
-		</div><!-- /popup_content-->
-
-	</div><!-- /popup_group-->
 
 	<script src="public/js/jquery.min.js" type="text/javascript"></script>
 	<script src="public/js/rem.js" charset="utf-8"></script>

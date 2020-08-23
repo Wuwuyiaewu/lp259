@@ -232,7 +232,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4805f', end
 }
 
 .popup_group {
-	/* display:none; */
+	display:none;
 	background:rgba(0,0,0,0.7);
 	position:fixed;
 	top:0;

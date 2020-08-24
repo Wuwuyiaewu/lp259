@@ -57,8 +57,10 @@
 					<tr v-for="(list,index) in html.slice(0,5)">
 						<td><img :src="list.img[index]" alt=""></td>
 						<td>{{list.name}}</td>
-						<td>{{(list.hight + list.low / 2).toFixed(2)}}</td>
-						<td>{{((list.hight - list.low) * list.multiple).toFixed(2)}}</td>
+						<td>{{list.curPrice}}</td>
+						<td>{{list.benefit}}</td>
+						<!-- <td>{{(list.hight + list.low / 2).toFixed(2)}}</td> -->
+						<!-- <td>{{((list.hight - list.low) * list.multiple).toFixed(2)}}</td> -->
 						<td><a :href="list.id" class="r_btn"><img src="promote/lp259/images/red_btn.png"></a></td>
 					</tr>
 				</table>

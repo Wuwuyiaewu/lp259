@@ -1,21 +1,9 @@
 
-
-function popup_close() {
-	$("#select_popup").fadeOut();
-}
-
-function update_list() {
-
-	$("#select_popup").fadeOut();
-}
-
-
 var vm = new Vue({
 	el: "#app",
 	data() {
 		return {
-			checkedNames: ["贵金属", "能源", "外汇", "指数", "农产品", "美股", "港股"],
-			show: true,
+			checkedNames: ["外汇"],
 			ax_data: {
 				"head": { "appKey": "yz352001" },
 				"data": { "login_name": "", "password": "", "accountType": "" }
@@ -69,51 +57,112 @@ var vm = new Vue({
 				'promote/lp259/images/icon5.png',
 			],
 			// 彈窗顯示
-			popshow:false,
+			popshow: false,
 			// 全選選擇器
 			isAll: false,
+			//id總覽
 			all:
 			{
 				product: [
-					{
-						type: "贵金属", name: '现货黄金', hight: 1288.05, low: 1283.85, multiple: 100, id: 573004,
-					},
-					{
-						type: "贵金属", name: '现货白银', hight: 14.973, low: 14.9, multiple: 5000, id: 573004,
-					},
-					{
-						type: "农产品", name: '玉米', hight: 405.63, low: 405.13, multiple: 100, id: 573007,
-					},
-					{
-						type: "农产品", name: '大豆', hight: 854.75, low: 854.13, multiple: 500, id: 573008,
-					},
-					{
-						type: "港股", name: '美团点评-W', hight: 222.75, low: 222.45, multiple: 3.87, id: 573110,
-					},
-					{
-						type: "港股", name: '石药集团', hight: 15.9, low: 15.88, multiple: 5.16, id: 573136,
-					},
-					{
-						type: "指数", name: '英国UK100', hight: 7209.5, low: 7182.5, multiple: 10, id: 573023,
-					},
-					{
-						type: "指数", name: '发过FRA40', hight: 5408, low: 5281.75, multiple: 0, id: 573021,
-					},
-				],
+					{ type: "外汇", name: "欧元美元", id: "573139", hight: 0, low: 0, mulpiple: "100000" },
+					{ type: "外汇", name: "英镑美元", id: "573039", hight: 0, low: 0, mulpiple: "100000" },
+					{ type: "外汇", name: "澳元美元", id: "573024", hight: 0, low: 0, mulpiple: "100000" },
+					{ type: "外汇", name: "纽元美元", id: "573028", hight: 0, low: 0, mulpiple: "100000" },
+					{ type: "外汇", name: "美元瑞郎", id: "573035", hight: 0, low: 0, mulpiple: "100000" },
+					{ type: "外汇", name: "欧元瑞郎", id: "573033", hight: 0, low: 0, mulpiple: "100000" },
+					{ type: "外汇", name: "英镑瑞郎", id: "573034", hight: 0, low: 0, mulpiple: "100000" },
+					{ type: "外汇", name: "欧元英镑", id: "573036", hight: 0, low: 0, mulpiple: "100000" },
+					{ type: "外汇", name: "欧元澳元", id: "573041", hight: 0, low: 0, mulpiple: "100000" },
+					{ type: "外汇", name: "英镑澳元", id: "573037", hight: 0, low: 0, mulpiple: "100000" },
+					{ type: "外汇", name: "澳元纽元", id: "573030", hight: 0, low: 0, mulpiple: "100000" },
+					{ type: "外汇", name: "美元新加坡元", id: "593069", hight: 0, low: 0, mulpiple: "100000" },
+					{ type: "外汇", name: "欧元加元", id: "573090", hight: 0, low: 0, mulpiple: "100000" },
+					{ type: "外汇", name: "欧元纽元", id: "573091", hight: 0, low: 0, mulpiple: "100000" },
+					{ type: "外汇", name: "美元加元", id: "573031", hight: 0, low: 0, mulpiple: "100000" },
+					{ type: "外汇", name: "英镑加元", id: "573088", hight: 0, low: 0, mulpiple: "100000" },
+					{ type: "外汇", name: "英镑纽元", id: "573089", hight: 0, low: 0, mulpiple: "100000" },
+					{ type: "外汇", name: "美元日元", id: "573032", hight: 0, low: 0, mulpiple: "1000" },
+					{ type: "外汇", name: "欧元日元", id: "573040", hight: 0, low: 0, mulpiple: "1000" },
+					{ type: "外汇", name: "英镑日元", id: "573038", hight: 0, low: 0, mulpiple: "1000" },
+					{ type: "外汇", name: "澳元日元", id: "573026", hight: 0, low: 0, mulpiple: "1000" },
+					{ type: "外汇", name: "纽元日元", id: "573029", hight: 0, low: 0, mulpiple: "1000" },
+					{ type: "外汇", name: "加元日元", id: "573027", hight: 0, low: 0, mulpiple: "1000" },
+					{ type: "外汇", name: "美元离岸人民币", id: "573043", hight: 0, low: 0, mulpiple: "1000" },
+					{ type: "外汇", name: "港元离岸人民币", id: "573042", hight: 0, low: 0, mulpiple: "1000" },
+					{ type: "外汇", name: "瑞郎日元", id: "573087", hight: 0, low: 0, mulpiple: "1000" },
+					{ type: "指数", name: "英国UK100", id: "573023", hight: 0, low: 0, mulpiple: "10" },
+					{ type: "指数", name: "发过FRA40", id: "573021", hight: 0, low: 0, mulpiple: "20" },
+					{ type: "指数", name: "德国GER30", id: "573022", hight: 0, low: 0, mulpiple: "10" },
+					{ type: "指数", name: "美汇指数", id: "573019", hight: 0, low: 0, mulpiple: "1000" },
+					{ type: "指数", name: "恐慌指数", id: "573020", hight: 0, low: 0, mulpiple: "1000" },
+					{ type: "指数", name: "香港50", id: "573016", hight: 0, low: 0, mulpiple: "2" },
+					{ type: "指数", name: "中华300", id: "573017", hight: 0, low: 0, mulpiple: "10" },
+					{ type: "指数", name: "日本JPN225", id: "573018", hight: 0, low: 0, mulpiple: "2" },
+					{ type: "指数", name: "美国DJ30", id: "573015", hight: 0, low: 0, mulpiple: "5" },
+					{ type: "指数", name: "美国SP500", id: "573013", hight: 0, low: 0, mulpiple: "50" },
+					{ type: "指数", name: "美国TECH100", id: "573014", hight: 0, low: 0, mulpiple: "20" },
+					{ type: "能源", name: "天然气", id: "573012", hight: 0, low: 0, mulpiple: "10000" },
+					{ type: "能源", name: "英国原油", id: "573011", hight: 0, low: 0, mulpiple: "100" },
+					{ type: "能源", name: "美国原油", id: "573010", hight: 0, low: 0, mulpiple: "100" },
+					{ type: "贵金属", name: "现货白银", id: "573005", hight: 0, low: 0, mulpiple: "5000" },
+					{ type: "贵金属", name: "现货黄金", id: "573004", hight: 0, low: 0, mulpiple: "100" },
+					{ type: "贵金属", name: "钯金", id: "573003", hight: 0, low: 0, mulpiple: "100" },
+					{ type: "贵金属", name: "铜", id: "593070", hight: 0, low: 0, mulpiple: "100" },
+					{ type: "贵金属", name: "铂金", id: "573002", hight: 0, low: 0, mulpiple: "50" },
+					{ type: "农产品", name: "玉米", id: "573007", hight: 0, low: 0, mulpiple: "100" },
+					{ type: "农产品", name: "大豆", id: "573008", hight: 0, low: 0, mulpiple: "500" },
+					{ type: "农产品", name: "小麦", id: "573006", hight: 0, low: 0, mulpiple: "100" },
+					{ type: "农产品", name: "可可", id: "573009", hight: 0, low: 0, mulpiple: "20" },
+					{ type: "美股", name: "苹果公司", id: "573118", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "阿里巴巴", id: "573115", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "花旗银行", id: "573113", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "波音", id: "573116", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "京东", id: "573099", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "耐克", id: "593052", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "特斯拉", id: "593043", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "微博", id: "573143", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "新浪", id: "593048", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "58同城", id: "573144", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "拼多多", id: "573095", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "沃尔玛", id: "593041", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "百度", id: "573114", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "亚马逊", id: "573117", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "可口可乐", id: "573098", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "微软", id: "573096", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "华米科技", id: "573128", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "迪士尼", id: "593063", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "谷歌C", id: "593062", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "美股", name: "星巴克", id: "573093", hight: 0, low: 0, mulpiple: "1" },
+					{ type: "港股", name: "美团点评-W", id: "573110", hight: 0, low: 0, mulpiple: "*100/美港实时汇率" },
+					{ type: "港股", name: "石药集团", id: "573136", hight: 0, low: 0, mulpiple: "*2000/美港实时汇率" },
+					{ type: "港股", name: "百威亚太", id: "593037", hight: 0, low: 0, mulpiple: "*100/美港实时汇率" },
+					{ type: "港股", name: "比亚迪股份", id: "593020", hight: 0, low: 0, mulpiple: "*500/美港实时汇率" },
+					{ type: "港股", name: "中国金茂", id: "593026", hight: 0, low: 0, mulpiple: "*2000/美港实时汇率" },
+					{ type: "港股", name: "阿里健康", id: "593031", hight: 0, low: 0, mulpiple: "*2000/美港实时汇率" },
+					{ type: "港股", name: "海底捞", id: "573112", hight: 0, low: 0, mulpiple: "*1000/美港实时汇率" },
+					{ type: "港股", name: "舜宇光学科技", id: "573150", hight: 0, low: 0, mulpiple: "*100/美港实时汇率" },
+					{ type: "港股", name: "青岛啤酒", id: "593032", hight: 0, low: 0, mulpiple: "*2000/美港实时汇率" },
+					{ type: "港股", name: "康师傅", id: "593029", hight: 0, low: 0, mulpiple: "*2000/美港实时汇率" },
+					{ type: "港股", name: "蒙牛", id: "593014", hight: 0, low: 0, mulpiple: "*1000/美港实时汇率" },
+					{ type: "港股", name: "李宁", id: "593013", hight: 0, low: 0, mulpiple: "*500/美港实时汇率" },
+					{ type: "港股", name: "阿里巴巴-SW", id: "573152", hight: 0, low: 0, mulpiple: "*100/美港实时汇率" },
+					{ type: "港股", name: "香港交易所", id: "573097", hight: 0, low: 0, mulpiple: "*100/美港实时汇率" },
+					{ type: "港股", name: "友邦保险", id: "573106", hight: 0, low: 0, mulpiple: "*200/美港实时汇率" },
+					{ type: "港股", name: "腾讯控股", id: "573100", hight: 0, low: 0, mulpiple: "*100/美港实时汇率" },
+					{ type: "港股", name: "阅文", id: "593035", hight: 0, low: 0, mulpiple: "*200/美港实时汇率" },
+					{ type: "港股", name: "平安好医生", id: "573146", hight: 0, low: 0, mulpiple: "*100/美港实时汇率" },
+					{ type: "港股", name: "安踏体育", id: "573148", hight: 0, low: 0, mulpiple: "*1000/美港实时汇率" },
+					{ type: "港股", name: "小米集团-W", id: "573107", hight: 0, low: 0, mulpiple: "*200/美港实时汇率" },
+				]
 			},
+			//view 層次
+			htmlView: [
+			],
+			// 及時
+			forComputed: [],
 			//表單選擇的產品
 			selId: [],
-			//id總覽
-			productList: [
-				{ type: "外汇", name: "欧元瑞郎", id: "573033" },
-				{ type: "指数", name: "英国UK100", id: "573023" },
-				{ type: "能源", name: "天然气", id: "573012" },
-				{ type: "贵金属", name: "现货白银", id: "573005" },
-				{ type: "农产品", name: "玉米", id: "573007" },
-				{ type: "农产品", name: "米將", id: "573999" },
-				{ type: "美股", name: "苹果公司", id: "573118" },
-				{ type: "港股", name: "美团点评-W", id: "573110" },
-			]
+
 		}
 	},
 	methods: {
@@ -179,6 +228,7 @@ var vm = new Vue({
 		//Websocket 送出點
 		//
 		WsBuildup(msgType, _content) {
+			console.log(msgType)
 			let vm = this
 			vm.Ws_config.head.msgType = msgType
 			vm.Ws_config.content = _content
@@ -200,36 +250,40 @@ var vm = new Vue({
 					console.log("報價有錯  " + e);
 				}
 				var numSplit = split[0] * 1
-				if (vm.product.indexOf(numSplit) < 0) {
-					console.log('推入ID')
-					vm.product.push(numSplit)
-				}
-				vm.price = split
-				// console.log(vm.product)
+				var realtimePrice = {
+					curPrice: split[3],
+					highPrice: split[5],
+					lowPrice: split[6],
+				};
+				vm.updateElementDiv(numSplit, realtimePrice)
+
+
 				// 格式
 
 			} else if (typeof (e) === "string" && e.toString().indexOf("p(") < 0) {
 				var msg = JSON.parse(e);
 				var msg_code = msg.msg_code;
+				console.log('2')
 			}
+
+			//事件判斷，尋找msg_type
 			switch (msg_code) {
 				case "UserLoginInfoRet":
+					// 初次比對
+					// 比對每個產品推入 id ，執行產品訂閱
 					vm.checkedNames.forEach(res => {
-						vm.productList.forEach(res2 => {
+						vm.all.product.forEach(res2 => {
 							if (res === res2.type) {
 								vm.selId.push(res2.id)
-								console.log(`${vm.selId}`);
 							} else {
-								console.log('沒中')
 							}
 						})
 					})
+					console.log('3')
 					_content = {
-						//
 						// 注入產品 ID 陣列 
 						// e.g 573004 = 黃金價格
 						code_ids: vm.selId,
-						//
 						subscribeType: "reSubscribe",
 						type: "yz"
 					}
@@ -242,6 +296,34 @@ var vm = new Vue({
 				default:
 					break;
 			}
+		},
+		updateElementDiv(id, realtime) {
+			let vm = this
+			let benefit = realtime.highPrice - realtime.lowPrice
+			let product = {
+				id: id,
+				curPrice:realtime.curPrice,
+				benefit: benefit
+			}
+			vm.all.product.forEach(res => {
+				if (res.id == id) {
+					product.mulpiple = res.mulpiple
+					product.type = res.type
+					product.name = res.name
+					product.img = vm.img
+					product.benefit = (product.benefit * product.mulpiple).toFixed(2)
+					var index = vm.htmlView.findIndex(x => x.id == res.id)
+					if (index === -1) {
+						vm.htmlView.push(product);
+					}else if(index !== -1){
+						vm.htmlView.forEach(res2=>{
+							if(res.id == res2.id){
+								res2.curPrice = realtime.curPrice
+							}
+						})
+					}
+				}
+			})
 		},
 		// 彈窗切換
 		popControl() {
@@ -258,6 +340,7 @@ var vm = new Vue({
 		// 攫取產品id
 		buildUpId() {
 			let vm = this
+			vm.htmlView = []
 			if (vm.checkedNames.length === 0) {
 				alert('請選擇一項產品')
 				return
@@ -265,12 +348,12 @@ var vm = new Vue({
 			// 比對檢查選擇清單
 			vm.selId = []
 			vm.checkedNames = vm.checkedNames.toString().split(',')
-			console.log(vm.checkedNames, '顯示')
 			vm.checkedNames.forEach(res => {
 				// 比對檢查列表
-				vm.productList.forEach(res2 => {
+				vm.all.product.forEach(res2 => {
 					if (res === res2.type) {
 						//推入id
+						//此時已經選取好該入場顯示的產品了
 						vm.selId.push(res2.id)
 					} else {
 					}
@@ -296,24 +379,23 @@ var vm = new Vue({
 			}
 		}
 	},
-	watch:{
-		checkedNames(){
+	watch: {
+		checkedNames() {
 			let vm = this
-			if(this.checkedNames.length < 7){
+			if (this.checkedNames.length < 7) {
 				vm.isAll = false
 				document.getElementById("data1").checked = false
-			}else{
+			} else {
 				document.getElementById("data1").checked = true
 			}
 		}
 	},
 	computed: {
 		html() {
-
 			let vm = this
-			let newSort = vm.all.product.sort((a, b) => {
-				let one = (a.hight - a.low) * a.multiple
-				let two = (b.hight - b.low) * b.multiple
+			let newSort = vm.htmlView.sort((a, b) => {
+				let one = a.benefit
+				let two = b.benefit
 				return one < two ? 1 : -1;
 			});
 			return newSort

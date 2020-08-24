@@ -1,31 +1,11 @@
 
 
-var data_array = ["贵金属"];
-
 function popup_close() {
 	$("#select_popup").fadeOut();
-	$("#popup_data input").attr('checked', false);
-
-	$.each(data_array, function (i, this_val) {
-		$("#popup_data input[value=" + this_val + "]").attr('checked', true);
-	});
 }
 
 function update_list() {
 
-	var value_arr = $('#popup_data input:checked').map(function () {
-		return $(this).val();
-	});
-
-	data_array = value_arr.get();
-	console.log(data_array);
-
-	var temp_html = "";
-	$.each(data_array, function (i, this_val) {
-		temp_html += "<span>" + this_val + "</span>";
-	});
-
-	$("#show_data").html(temp_html);
 	$("#select_popup").fadeOut();
 }
 
@@ -34,8 +14,8 @@ var vm = new Vue({
 	el: "#app",
 	data() {
 		return {
-			checkedNames:[],
-			show:true,
+			checkedNames: ["贵金属", "能源", "外汇", "指数", "农产品", "美股", "港股"],
+			show: true,
 			ax_data: {
 				"head": { "appKey": "yz352001" },
 				"data": { "login_name": "", "password": "", "accountType": "" }
@@ -88,6 +68,10 @@ var vm = new Vue({
 				'promote/lp259/images/icon4.png',
 				'promote/lp259/images/icon5.png',
 			],
+			// 彈窗顯示
+			popshow:false,
+			// 全選選擇器
+			isAll: false,
 			all:
 			{
 				product: [
@@ -116,7 +100,20 @@ var vm = new Vue({
 						type: "指数", name: '发过FRA40', hight: 5408, low: 5281.75, multiple: 0, id: 573021,
 					},
 				],
-			}
+			},
+			//表單選擇的產品
+			selId: [],
+			//id總覽
+			productList: [
+				{ type: "外汇", name: "欧元瑞郎", id: "573033" },
+				{ type: "指数", name: "英国UK100", id: "573023" },
+				{ type: "能源", name: "天然气", id: "573012" },
+				{ type: "贵金属", name: "现货白银", id: "573005" },
+				{ type: "农产品", name: "玉米", id: "573007" },
+				{ type: "农产品", name: "米將", id: "573999" },
+				{ type: "美股", name: "苹果公司", id: "573118" },
+				{ type: "港股", name: "美团点评-W", id: "573110" },
+			]
 		}
 	},
 	methods: {
@@ -177,6 +174,10 @@ var vm = new Vue({
 		websocketclose(e) {  //關閉
 			console.log('websocket連線中斷', e);
 		},
+		//使用字串與組裝變數後
+		//
+		//Websocket 送出點
+		//
 		WsBuildup(msgType, _content) {
 			let vm = this
 			vm.Ws_config.head.msgType = msgType
@@ -213,11 +214,21 @@ var vm = new Vue({
 			}
 			switch (msg_code) {
 				case "UserLoginInfoRet":
+					vm.checkedNames.forEach(res => {
+						vm.productList.forEach(res2 => {
+							if (res === res2.type) {
+								vm.selId.push(res2.id)
+								console.log(`${vm.selId}`);
+							} else {
+								console.log('沒中')
+							}
+						})
+					})
 					_content = {
 						//
 						// 注入產品 ID 陣列 
 						// e.g 573004 = 黃金價格
-						code_ids: [573116,573114,573004,573033],
+						code_ids: vm.selId,
 						//
 						subscribeType: "reSubscribe",
 						type: "yz"
@@ -232,12 +243,69 @@ var vm = new Vue({
 					break;
 			}
 		},
+		// 彈窗切換
+		popControl() {
+			let vm = this
+			vm.popshow = true
+		},
+		//
 		buildUphtml() {
 			let vm = this
-			vm.all.product.forEach(res=>{
+			vm.all.product.forEach(res => {
 				res.img = vm.img
 			})
 		},
+		// 攫取產品id
+		buildUpId() {
+			let vm = this
+			if (vm.checkedNames.length === 0) {
+				alert('請選擇一項產品')
+				return
+			}
+			// 比對檢查選擇清單
+			vm.selId = []
+			vm.checkedNames = vm.checkedNames.toString().split(',')
+			console.log(vm.checkedNames, '顯示')
+			vm.checkedNames.forEach(res => {
+				// 比對檢查列表
+				vm.productList.forEach(res2 => {
+					if (res === res2.type) {
+						//推入id
+						vm.selId.push(res2.id)
+					} else {
+					}
+				})
+			})
+			_content = {
+				// 注入產品 ID 陣列 
+				// e.g 573004 = 黃金價格
+				code_ids: vm.selId,
+				subscribeType: "reSubscribe",
+				type: "yz"
+			}
+			vm.WsBuildup("productSubscription", _content)
+			vm.popshow = false
+		},
+		allChang() {
+			let vm = this
+			vm.isAll = !vm.isAll
+			if (vm.isAll === true) {
+				vm.checkedNames = ["贵金属", "能源", "外汇", "指数", "农产品", "美股", "港股"]
+			} else if (vm.isAll === false) {
+				vm.checkedNames = []
+			}
+		}
+	},
+	watch:{
+		checkedNames(){
+			let vm = this
+			if(this.checkedNames.length < 7){
+				vm.isAll = false
+				document.getElementById("data1").checked = false
+			}else{
+				document.getElementById("data1").checked = true
+			}
+		}
 	},
 	computed: {
 		html() {

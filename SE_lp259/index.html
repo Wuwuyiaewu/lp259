@@ -35,9 +35,10 @@
 		<div class="data_group">
 			<span class="content_pic"><img src="promote/lp259/images/content_pic.png"></span>
 
-			<div class="data_menu">
-				<div onClick="$('#select_popup').fadeIn()">
-					<span>选产品类别</span>
+			<div class="data_menu" >
+				<!-- 彈窗控制器 -->
+				<div @click="popControl">
+					<span >选产品类别</span>
 					<p v-if="checkedNames.length === 0"><span>請選擇產品</span></p>
 					<p><span>{{checkedNames.join(" ")}}</span></p>
 				</div>
@@ -73,13 +74,13 @@
 		</div>
 
 		<!-- /popup_group-->
-		<div class="popup_group" id="select_popup">
+		<div class="popup_group" v-if="popshow">
 
 			<div class="popup_content">
 				<ul id="popup_data">
 					<li>
-						<label for="data1">全選</label>
-						<input name="data1" id="data1" type="checkbox" value="贵金属 能源 外汇 指数 农产品 美股 港股" v-model="checkedNames">
+						<b><label for="data1">全選</label></b>
+						<input name="data1" id="data1" type="checkbox" value="" @click="allChang">
 					</li>
 					<li>
 						<label for="data1">贵金属</label>
@@ -111,8 +112,8 @@
 					</li>
 				</ul>
 				<div class="popup_btn">
-					<a href="#" onClick="update_list()" class="btn1">确认</a>
-					<a href="#" onClick="popup_close()" class="btn2">取消</a>
+					<a href="#" @click="buildUpId" class="btn1">确认</a>
+					<a href="#" @click="popshow = !popshow" class="btn2">取消</a>
 				</div>
 			</div><!-- /popup_content-->
 

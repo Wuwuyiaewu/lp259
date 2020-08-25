@@ -3,7 +3,8 @@ var vm = new Vue({
 	el: "#app",
 	data() {
 		return {
-			checkedNames: ["外汇"],
+			checkedNames: ["外汇", "指数", "能源", "贵金属", "农产品", "美股", "港股"],
+			tempChecked: [],
 			ax_data: {
 				"head": { "appKey": "yz352001" },
 				"data": { "login_name": "", "password": "", "accountType": "" }
@@ -56,10 +57,14 @@ var vm = new Vue({
 				'promote/lp259/images/icon4.png',
 				'promote/lp259/images/icon5.png',
 			],
+			// vueloading
+			notloading:false,
 			// 彈窗顯示
 			popshow: false,
+			// 一次性視窗
+			isalert: false,
 			// 全選選擇器
-			isAll: false,
+			isAll: true,
 			//id總覽
 			all:
 			{
@@ -133,29 +138,29 @@ var vm = new Vue({
 					{ type: "美股", name: "迪士尼", id: "593063", hight: 0, low: 0, mulpiple: "1" },
 					{ type: "美股", name: "谷歌C", id: "593062", hight: 0, low: 0, mulpiple: "1" },
 					{ type: "美股", name: "星巴克", id: "573093", hight: 0, low: 0, mulpiple: "1" },
-					{ type: "港股", name: "美团点评-W", id: "573110", hight: 0, low: 0, mulpiple: 100/7.77 },
-					{ type: "港股", name: "石药集团", id: "573136", hight: 0, low: 0, mulpiple: 2000/7.77 },
-					{ type: "港股", name: "百威亚太", id: "593037", hight: 0, low: 0, mulpiple: 100/7.77 },
-					{ type: "港股", name: "比亚迪股份", id: "593020", hight: 0, low: 0, mulpiple: 500/7.77 },
-					{ type: "港股", name: "中国金茂", id: "593026", hight: 0, low: 0, mulpiple: 2000/7.77 },
-					{ type: "港股", name: "阿里健康", id: "593031", hight: 0, low: 0, mulpiple: 2000/7.77 },
-					{ type: "港股", name: "海底捞", id: "573112", hight: 0, low: 0, mulpiple: 1000/7.77 },
-					{ type: "港股", name: "舜宇光学科技", id: "573150", hight: 0, low: 0, mulpiple: 100/7.77 },
-					{ type: "港股", name: "青岛啤酒", id: "593032", hight: 0, low: 0, mulpiple: 2000/7.77 },
-					{ type: "港股", name: "康师傅", id: "593029", hight: 0, low: 0, mulpiple: 2000/7.77 },
-					{ type: "港股", name: "蒙牛", id: "593014", hight: 0, low: 0, mulpiple: 1000/7.77 },
-					{ type: "港股", name: "李宁", id: "593013", hight: 0, low: 0, mulpiple: 500/7.77 },
-					{ type: "港股", name: "阿里巴巴-SW", id: "573152", hight: 0, low: 0, mulpiple: 100/7.77 },
-					{ type: "港股", name: "香港交易所", id: "573097", hight: 0, low: 0, mulpiple: 100/7.77 },
-					{ type: "港股", name: "友邦保险", id: "573106", hight: 0, low: 0, mulpiple: 200/7.77 },
-					{ type: "港股", name: "腾讯控股", id: "573100", hight: 0, low: 0, mulpiple: 100/7.77 },
-					{ type: "港股", name: "阅文", id: "593035", hight: 0, low: 0, mulpiple: 200/7.77 },
-					{ type: "港股", name: "平安好医生", id: "573146", hight: 0, low: 0, mulpiple: 100/7.77 },
-					{ type: "港股", name: "安踏体育", id: "573148", hight: 0, low: 0, mulpiple: 1000/7.77 },
-					{ type: "港股", name: "小米集团-W", id: "573107", hight: 0, low: 0, mulpiple: 200/7.77 },
+					{ type: "港股", name: "美团点评-W", id: "573110", hight: 0, low: 0, mulpiple: 100 / 7.77 },
+					{ type: "港股", name: "石药集团", id: "573136", hight: 0, low: 0, mulpiple: 2000 / 7.77 },
+					{ type: "港股", name: "百威亚太", id: "593037", hight: 0, low: 0, mulpiple: 100 / 7.77 },
+					{ type: "港股", name: "比亚迪股份", id: "593020", hight: 0, low: 0, mulpiple: 500 / 7.77 },
+					{ type: "港股", name: "中国金茂", id: "593026", hight: 0, low: 0, mulpiple: 2000 / 7.77 },
+					{ type: "港股", name: "阿里健康", id: "593031", hight: 0, low: 0, mulpiple: 2000 / 7.77 },
+					{ type: "港股", name: "海底捞", id: "573112", hight: 0, low: 0, mulpiple: 1000 / 7.77 },
+					{ type: "港股", name: "舜宇光学科技", id: "573150", hight: 0, low: 0, mulpiple: 100 / 7.77 },
+					{ type: "港股", name: "青岛啤酒", id: "593032", hight: 0, low: 0, mulpiple: 2000 / 7.77 },
+					{ type: "港股", name: "康师傅", id: "593029", hight: 0, low: 0, mulpiple: 2000 / 7.77 },
+					{ type: "港股", name: "蒙牛", id: "593014", hight: 0, low: 0, mulpiple: 1000 / 7.77 },
+					{ type: "港股", name: "李宁", id: "593013", hight: 0, low: 0, mulpiple: 500 / 7.77 },
+					{ type: "港股", name: "阿里巴巴-SW", id: "573152", hight: 0, low: 0, mulpiple: 100 / 7.77 },
+					{ type: "港股", name: "香港交易所", id: "573097", hight: 0, low: 0, mulpiple: 100 / 7.77 },
+					{ type: "港股", name: "友邦保险", id: "573106", hight: 0, low: 0, mulpiple: 200 / 7.77 },
+					{ type: "港股", name: "腾讯控股", id: "573100", hight: 0, low: 0, mulpiple: 100 / 7.77 },
+					{ type: "港股", name: "阅文", id: "593035", hight: 0, low: 0, mulpiple: 200 / 7.77 },
+					{ type: "港股", name: "平安好医生", id: "573146", hight: 0, low: 0, mulpiple: 100 / 7.77 },
+					{ type: "港股", name: "安踏体育", id: "573148", hight: 0, low: 0, mulpiple: 1000 / 7.77 },
+					{ type: "港股", name: "小米集团-W", id: "573107", hight: 0, low: 0, mulpiple: 200 / 7.77 },
 				]
 			},
-			HKUSrate:NaN,
+			HKUSrate: NaN,
 			//view 層次
 			htmlView: [
 			],
@@ -288,7 +293,7 @@ var vm = new Vue({
 						subscribeType: "reSubscribe",
 						type: "yz"
 					}
-					rateContent ={
+					rateContent = {
 						code_ids: 573044,
 						subscribeType: "reSubscribe",
 						type: "yz"
@@ -304,13 +309,13 @@ var vm = new Vue({
 					break;
 			}
 		},
-		getRate(msgType, _content){
-			console.log(msgType,"取匯率用")
+		getRate(msgType, _content) {
+			console.log(msgType, "取匯率用")
 			let vm = this
 			vm.Ws_config.trace = `h5 ${vm.get_current_time()}`
 			vm.Ws_config.head.msgType = msgType
 			vm.Ws_config.head.sendTime = vm.get_current_time(),
-			vm.Ws_config.content = _content
+				vm.Ws_config.content = _content
 			vm.websocketsend(JSON.stringify(vm.Ws_config));
 		},
 		updateElementDiv(id, realtime) {
@@ -327,7 +332,7 @@ var vm = new Vue({
 					product.mulpiple = res.mulpiple
 					product.name = res.name
 					product.img = vm.img
-					product.benefit = (product.benefit * product.mulpiple).toFixed(2)
+					product.benefit = (product.benefit * product.mulpiple).toFixed(1)
 					var index = vm.htmlView.findIndex(x => x.id == res.id)
 					if (index === -1) {
 						vm.htmlView.push(product);
@@ -344,9 +349,15 @@ var vm = new Vue({
 		// 彈窗切換
 		popControl() {
 			let vm = this
+			vm.tempChecked = vm.checkedNames
 			vm.popshow = true
 		},
-		//
+		// 移除警告確認
+		remainCheck(){
+			let vm = this
+			vm.isalert = false
+		},
+		// 給予排名加上陣列圖片
 		buildUphtml() {
 			let vm = this
 			vm.all.product.forEach(res => {
@@ -356,14 +367,14 @@ var vm = new Vue({
 		// 攫取產品id
 		buildUpId() {
 			let vm = this
+			if (vm.checkedNames.length === 0) {
+				vm.isalert = true
+				return
+			}
 			vm.htmlView = []
 			this.websock.close()
 			this.gotourl()
 			this.buildUphtml()
-			if (vm.checkedNames.length === 0) {
-				alert('請選擇一項產品')
-				return
-			}
 			// 比對檢查選擇清單
 			vm.selId = []
 			vm.checkedNames = vm.checkedNames.toString().split(',')
@@ -421,8 +432,15 @@ var vm = new Vue({
 		}
 	},
 	mounted() {
+		// 前往 IX_postMessage
+		// let recaptchaScript = document.createElement('script')
+		// recaptchaScript.setAttribute('src', 'public/js/IX_postMessage.js')
+		// document.head.appendChild(recaptchaScript)
 	},
 	created() {
+		setTimeout(() => {
+			this.notloading = true
+		}, 0);
 		this.gotourl()
 		this.buildUphtml()
 	},

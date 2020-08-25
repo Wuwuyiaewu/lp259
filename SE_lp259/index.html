@@ -11,7 +11,6 @@
 	<meta name="author" content="[2020.08] Designed by Kim;Coded by Pong">
 	<meta name="format-detection" content="telephone=no">
 	<!--#include file="/common/template/lp/lp_css.html"-->
-	<link rel="stylesheet" href="public/css/Scrollbar.css" type="text/css">
 	<link href="promote/lp259/css/animate.css" type="text/css" rel="stylesheet" />
 	<link href="promote/lp259/css/lp259.css" type="text/css" rel="stylesheet" />
 
@@ -35,12 +34,12 @@
 		<div class="data_group">
 			<span class="content_pic"><img src="promote/lp259/images/content_pic.png"></span>
 
-			<div class="data_menu" >
+			<div class="data_menu">
 				<!-- 彈窗控制器 -->
 				<div @click="popControl">
-					<span >选产品类别</span>
+					<span>选产品类别</span>
 					<p v-if="checkedNames.length === 0"><span>請選擇產品</span></p>
-					<p><span>{{checkedNames.join(" ")}}</span></p>
+					<p><span>{{checkedNames.join(" / ")}}</span></p>
 				</div>
 			</div><!-- /data_menu-->
 
@@ -58,10 +57,11 @@
 						<td><img :src="list.img[index]" alt=""></td>
 						<td>{{list.name}}</td>
 						<td>{{list.curPrice}}</td>
-						<td>{{list.benefit}}</td>
+						<td>$ {{list.benefit}}</td>
 						<!-- <td>{{(list.hight + list.low / 2).toFixed(2)}}</td> -->
 						<!-- <td>{{((list.hight - list.low) * list.multiple).toFixed(2)}}</td> -->
-						<td><a :href="list.id" class="r_btn"><img src="promote/lp259/images/red_btn.png"></a></td>
+						<td><a href="javascript:;" :data-id="list.id" class="r_btn"><img
+									src="promote/lp259/images/red_btn.png"></a></td>
 					</tr>
 				</table>
 
@@ -76,13 +76,13 @@
 		</div>
 
 		<!-- /popup_group-->
-		<div class="popup_group" v-if="popshow">
-
+		<div class="popup_group" :class="{'popshow':popshow}">
 			<div class="popup_content">
+				<p class="popup_title">產品類別</p>
 				<ul id="popup_data">
 					<li>
 						<b><label for="data1">全選</label></b>
-						<input name="data1" id="data1" type="checkbox" value="" @click="allChang">
+						<input name="data1" id="data1" type="checkbox" value="" @click="allChang" checked>
 					</li>
 					<li>
 						<label for="data1">贵金属</label>
@@ -115,17 +115,27 @@
 				</ul>
 				<div class="popup_btn">
 					<a href="#" @click="buildUpId" class="btn1">确认</a>
-					<a href="#" @click="popshow = !popshow" class="btn2">取消</a>
+					<a href="#" @click="popshow = !popshow;checkedNames = tempChecked" class="btn2">取消</a>
 				</div>
 			</div><!-- /popup_content-->
-
 		</div>
 
 
 
+		<!-- alertProduct -->
 
+		<div class="alertBox_wrap" :class="{'alertshow':isalert}">
+			<div class="alertBox_content">
+				<h6>請選擇至少一項產品</h6>
+				<div class="alertBox_btn">
+					<a href="javascript:;" @click="remainCheck();checkedNames = tempChecked" class="btn1">确认</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- vue loading -->
+		<div class="isloading" :class="{'notloading':notloading}"></div>
 	</div><!-- /main_content-->
-
 
 	<script src="public/js/jquery.min.js" type="text/javascript"></script>
 	<script src="public/js/rem.js" charset="utf-8"></script>

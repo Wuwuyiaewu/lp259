@@ -109,9 +109,9 @@ var vm = new Vue({
 					{ type: "贵金属", name: "钯金", id: "573003", hight: 0, low: 0, mulpiple: "100" },
 					{ type: "贵金属", name: "铜", id: "593070", hight: 0, low: 0, mulpiple: "100" },
 					{ type: "贵金属", name: "铂金", id: "573002", hight: 0, low: 0, mulpiple: "50" },
-					{ type: "农产品", name: "玉米", id: "573007", hight: 0, low: 0, mulpiple: "100" },
-					{ type: "农产品", name: "大豆", id: "573008", hight: 0, low: 0, mulpiple: "500" },
-					{ type: "农产品", name: "小麦", id: "573006", hight: 0, low: 0, mulpiple: "100" },
+					{ type: "农产品", name: "玉米", id: "573007", hight: 0, low: 0, mulpiple: 100 },
+					{ type: "农产品", name: "大豆", id: "573008", hight: 0, low: 0, mulpiple: 500 },
+					{ type: "农产品", name: "小麦", id: "573006", hight: 0, low: 0, mulpiple: 100 },
 					{ type: "农产品", name: "可可", id: "573009", hight: 0, low: 0, mulpiple: "20" },
 					{ type: "美股", name: "苹果公司", id: "573118", hight: 0, low: 0, mulpiple: "1" },
 					{ type: "美股", name: "阿里巴巴", id: "573115", hight: 0, low: 0, mulpiple: "1" },
@@ -133,28 +133,29 @@ var vm = new Vue({
 					{ type: "美股", name: "迪士尼", id: "593063", hight: 0, low: 0, mulpiple: "1" },
 					{ type: "美股", name: "谷歌C", id: "593062", hight: 0, low: 0, mulpiple: "1" },
 					{ type: "美股", name: "星巴克", id: "573093", hight: 0, low: 0, mulpiple: "1" },
-					{ type: "港股", name: "美团点评-W", id: "573110", hight: 0, low: 0, mulpiple: "*100/美港实时汇率" },
-					{ type: "港股", name: "石药集团", id: "573136", hight: 0, low: 0, mulpiple: "*2000/美港实时汇率" },
-					{ type: "港股", name: "百威亚太", id: "593037", hight: 0, low: 0, mulpiple: "*100/美港实时汇率" },
-					{ type: "港股", name: "比亚迪股份", id: "593020", hight: 0, low: 0, mulpiple: "*500/美港实时汇率" },
-					{ type: "港股", name: "中国金茂", id: "593026", hight: 0, low: 0, mulpiple: "*2000/美港实时汇率" },
-					{ type: "港股", name: "阿里健康", id: "593031", hight: 0, low: 0, mulpiple: "*2000/美港实时汇率" },
-					{ type: "港股", name: "海底捞", id: "573112", hight: 0, low: 0, mulpiple: "*1000/美港实时汇率" },
-					{ type: "港股", name: "舜宇光学科技", id: "573150", hight: 0, low: 0, mulpiple: "*100/美港实时汇率" },
-					{ type: "港股", name: "青岛啤酒", id: "593032", hight: 0, low: 0, mulpiple: "*2000/美港实时汇率" },
-					{ type: "港股", name: "康师傅", id: "593029", hight: 0, low: 0, mulpiple: "*2000/美港实时汇率" },
-					{ type: "港股", name: "蒙牛", id: "593014", hight: 0, low: 0, mulpiple: "*1000/美港实时汇率" },
-					{ type: "港股", name: "李宁", id: "593013", hight: 0, low: 0, mulpiple: "*500/美港实时汇率" },
-					{ type: "港股", name: "阿里巴巴-SW", id: "573152", hight: 0, low: 0, mulpiple: "*100/美港实时汇率" },
-					{ type: "港股", name: "香港交易所", id: "573097", hight: 0, low: 0, mulpiple: "*100/美港实时汇率" },
-					{ type: "港股", name: "友邦保险", id: "573106", hight: 0, low: 0, mulpiple: "*200/美港实时汇率" },
-					{ type: "港股", name: "腾讯控股", id: "573100", hight: 0, low: 0, mulpiple: "*100/美港实时汇率" },
-					{ type: "港股", name: "阅文", id: "593035", hight: 0, low: 0, mulpiple: "*200/美港实时汇率" },
-					{ type: "港股", name: "平安好医生", id: "573146", hight: 0, low: 0, mulpiple: "*100/美港实时汇率" },
-					{ type: "港股", name: "安踏体育", id: "573148", hight: 0, low: 0, mulpiple: "*1000/美港实时汇率" },
-					{ type: "港股", name: "小米集团-W", id: "573107", hight: 0, low: 0, mulpiple: "*200/美港实时汇率" },
+					{ type: "港股", name: "美团点评-W", id: "573110", hight: 0, low: 0, mulpiple: 100/7.77 },
+					{ type: "港股", name: "石药集团", id: "573136", hight: 0, low: 0, mulpiple: 2000/7.77 },
+					{ type: "港股", name: "百威亚太", id: "593037", hight: 0, low: 0, mulpiple: 100/7.77 },
+					{ type: "港股", name: "比亚迪股份", id: "593020", hight: 0, low: 0, mulpiple: 500/7.77 },
+					{ type: "港股", name: "中国金茂", id: "593026", hight: 0, low: 0, mulpiple: 2000/7.77 },
+					{ type: "港股", name: "阿里健康", id: "593031", hight: 0, low: 0, mulpiple: 2000/7.77 },
+					{ type: "港股", name: "海底捞", id: "573112", hight: 0, low: 0, mulpiple: 1000/7.77 },
+					{ type: "港股", name: "舜宇光学科技", id: "573150", hight: 0, low: 0, mulpiple: 100/7.77 },
+					{ type: "港股", name: "青岛啤酒", id: "593032", hight: 0, low: 0, mulpiple: 2000/7.77 },
+					{ type: "港股", name: "康师傅", id: "593029", hight: 0, low: 0, mulpiple: 2000/7.77 },
+					{ type: "港股", name: "蒙牛", id: "593014", hight: 0, low: 0, mulpiple: 1000/7.77 },
+					{ type: "港股", name: "李宁", id: "593013", hight: 0, low: 0, mulpiple: 500/7.77 },
+					{ type: "港股", name: "阿里巴巴-SW", id: "573152", hight: 0, low: 0, mulpiple: 100/7.77 },
+					{ type: "港股", name: "香港交易所", id: "573097", hight: 0, low: 0, mulpiple: 100/7.77 },
+					{ type: "港股", name: "友邦保险", id: "573106", hight: 0, low: 0, mulpiple: 200/7.77 },
+					{ type: "港股", name: "腾讯控股", id: "573100", hight: 0, low: 0, mulpiple: 100/7.77 },
+					{ type: "港股", name: "阅文", id: "593035", hight: 0, low: 0, mulpiple: 200/7.77 },
+					{ type: "港股", name: "平安好医生", id: "573146", hight: 0, low: 0, mulpiple: 100/7.77 },
+					{ type: "港股", name: "安踏体育", id: "573148", hight: 0, low: 0, mulpiple: 1000/7.77 },
+					{ type: "港股", name: "小米集团-W", id: "573107", hight: 0, low: 0, mulpiple: 200/7.77 },
 				]
 			},
+			HKUSrate:NaN,
 			//view 層次
 			htmlView: [
 			],
@@ -287,7 +288,13 @@ var vm = new Vue({
 						subscribeType: "reSubscribe",
 						type: "yz"
 					}
+					rateContent ={
+						code_ids: 573044,
+						subscribeType: "reSubscribe",
+						type: "yz"
+					}
 					vm.WsBuildup("productSubscription", _content)
+					// vm.getRate("productSubscription",rateContent)
 					break;
 				case "HeartBeatConf":
 					break;
@@ -297,27 +304,36 @@ var vm = new Vue({
 					break;
 			}
 		},
+		getRate(msgType, _content){
+			console.log(msgType,"取匯率用")
+			let vm = this
+			vm.Ws_config.trace = `h5 ${vm.get_current_time()}`
+			vm.Ws_config.head.msgType = msgType
+			vm.Ws_config.head.sendTime = vm.get_current_time(),
+			vm.Ws_config.content = _content
+			vm.websocketsend(JSON.stringify(vm.Ws_config));
+		},
 		updateElementDiv(id, realtime) {
 			let vm = this
 			let benefit = realtime.highPrice - realtime.lowPrice
 			let product = {
 				id: id,
-				curPrice:realtime.curPrice,
+				curPrice: realtime.curPrice,
 				benefit: benefit
 			}
 			vm.all.product.forEach(res => {
 				if (res.id == id) {
-					product.mulpiple = res.mulpiple
 					product.type = res.type
+					product.mulpiple = res.mulpiple
 					product.name = res.name
 					product.img = vm.img
 					product.benefit = (product.benefit * product.mulpiple).toFixed(2)
 					var index = vm.htmlView.findIndex(x => x.id == res.id)
 					if (index === -1) {
 						vm.htmlView.push(product);
-					}else if(index !== -1){
-						vm.htmlView.forEach(res2=>{
-							if(res.id == res2.id){
+					} else if (index !== -1) {
+						vm.htmlView.forEach(res2 => {
+							if (res.id == res2.id) {
 								res2.curPrice = realtime.curPrice
 							}
 						})
@@ -341,6 +357,9 @@ var vm = new Vue({
 		buildUpId() {
 			let vm = this
 			vm.htmlView = []
+			this.websock.close()
+			this.gotourl()
+			this.buildUphtml()
 			if (vm.checkedNames.length === 0) {
 				alert('請選擇一項產品')
 				return
@@ -396,7 +415,7 @@ var vm = new Vue({
 			let newSort = vm.htmlView.sort((a, b) => {
 				let one = a.benefit
 				let two = b.benefit
-				return one < two ? 1 : -1;
+				return two - one
 			});
 			return newSort
 		}
